@@ -1,0 +1,67 @@
+<html lang="en">
+    <head>
+        <title>InTown</title>
+        
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        
+        <nav class="navBarContainer">
+            <div class="navBarItems" id="navBarItems">
+                
+                <div class="loginButtonContainer">
+                    <a href="loginPage.html">
+                        <button class="login">Login</button>
+                    </a>
+                </div>
+
+                <div class="inTownLogoContainer">
+                    <a href="HomePage.html"> 
+                        <button class="InTownLogo">InTown</button>
+                     </a>
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="uploadContainer">
+            
+            <form name="uploadContainerForm" onsubmit="return validateForm()">
+
+                <h1>Upload an Event</h1>
+
+                <label for="eventName">Event name:</label>
+                <input type="text" id="eventName" name="eventName" placeholder="Please enter the Event Name" required>
+
+                <label for="eventAddress">Event address: </label>
+                <input type="text" id="eventAddress" name="eventAddress" placeholder="Please enter the Event Address" required>
+
+                <label for="eventDescription">Event description: </label>
+                <textarea id="eventDescription" name="eventDescription" placeholder="Enter your event description here."></textarea>
+
+                <label for="startTime">Start time:</label>
+                <input type="datetime-local" id="startTime" name="startTime" class="startTime" required>
+
+                <label for="endTime">End time:</label>
+                <input type="datetime-local" id="endTime" name="endTime" class="endTime" required>
+                
+                <label for="myFile" class="fileButton">Choose File</label>
+                <input type="file" id="myFile" class="myFile" name="myFile">
+                
+                <input type="submit" class="submitButton" value="Upload">
+            </form>
+            <p id="fileName"></p>
+
+            <script>
+                document.getElementById('myFile').addEventListener('change', function () {
+                    var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+                    document.getElementById('fileName').textContent = 'Selected file: ' + fileName;
+                });
+            </script>
+        
+
+        </div>
+          
+
+    </body>
+</html>

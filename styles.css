@@ -1,0 +1,123 @@
+body {
+    background-image: linear-gradient(to bottom,hwb(241 73% 9%), darkslateblue);
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height:  100vh;
+    
+}
+
+form {
+    background-color: #f2f2f2;
+    border: 3px solid #f1f1f1;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+textarea{
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box; 
+}
+
+.dashboardGridContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    text-align: center;
+    background-color: #f2f2f2;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    
+}
+
+
+/*button styling */
+button {
+    background-image: linear-gradient(to bottom left,hwb(241 73% 9%), darkslateblue);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    
+}
+
+button:hover {
+    background-image: linear-gradient(hwb(241 73% 9%), darkslateblue);
+}
+
+.userLoginContainer {
+    padding: 16px;
+}
+
+.navBarContainer {
+    overflow: hidden;
+    padding: 14px 16px;
+    font-size: 18px;
+    
+}
+
+.navBarContainer a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+}
+
+.loginButtonContainer {
+    float: right;
+}
+
+h1{
+    text-align: center;
+}
+
+.myFile {
+    display: none;
+}
+
+.fileButton {
+    padding: 14px 20px;
+    background-image: linear-gradient(to bottom right,hwb(241 73% 9%), darkslateblue);
+    border-radius: 25px;
+    color: white;
+    display: inline-block;
+    }
+
+.submitButton{
+    padding: 14px 10px;
+    background-image: linear-gradient(to bottom right,hwb(241 73% 9%), darkslateblue);
+    border-radius: 25px;
+    border: none;
+    color: white;
+    display: inline-block;
+}
+
+.fileButton:hover {
+    background-image: linear-gradient(hwb(241 73% 9%), darkslateblue);
+}
+
+.submitButton:hover {
+    background-image: linear-gradient(hwb(241 73% 9%), darkslateblue);
+    
+}
+
+.startTime, .endTime {
+    display: block;
+    margin: 0.4rem 0;
+}
