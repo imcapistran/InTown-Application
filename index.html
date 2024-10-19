@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The InTown App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to The InTown App</h1>
+
+        <!-- Create Event Form -->
+        <section>
+            <h2>Create Event</h2>
+            <form id="event-form">
+                <input type="text" id="event-title" placeholder="Event Title" required><br>
+                <input type="text" id="event-description" placeholder="Event Description" required><br>
+                <input type="text" id="event-location" placeholder="Event Location" required><br>
+                <input type="date" id="event-date" required><br>
+                <button type="submit">Create Event</button>
+            </form>
+        </section>
+
+        <!-- Display Events -->
+        <section>
+            <h2>Upcoming Events</h2>
+            <ul id="event-list"></ul>
+        </section>
+
+        <!-- Submit Review Form -->
+        <section>
+            <h2>Submit Review</h2>
+            <form id="review-form">
+                <select id="event-select" required>
+                    <option value="">Select Event</option>
+                </select><br>
+                <textarea id="review-text" placeholder="Your review..." required></textarea><br>
+                <input type="number" id="review-rating" min="1" max="5" placeholder="Rating (1-5)" required><br>
+                <input type="file" id="review-photos" multiple><br>
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+
+        <!-- Display Reviews -->
+        <section>
+            <h2>Event Reviews</h2>
+            <ul id="review-list"></ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
