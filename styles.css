@@ -22,9 +22,10 @@ form {
 button{
     background-color: rgb(72, 61, 239);
     color: white;
-    border-radius: 25px;
+    border-radius: 5px;
     padding: 12px 8px;
     border:none;
+    font-weight: bold;
 }
 
 button:hover, .fileButton:hover, input[type=submit]:hover { 
@@ -32,7 +33,7 @@ button:hover, .fileButton:hover, input[type=submit]:hover {
     color: white;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=submit], textarea, .startTime, .endTime{
+input[type=text], input[type=password], input[type=email], input[type=submit], input[type=checkbox], textarea, .startTime, .endTime{
     margin-bottom: 10px; 
     border-radius: 5px;
     border: none;
