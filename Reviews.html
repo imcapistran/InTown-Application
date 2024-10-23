@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InTown - Reviews</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navBarContainer">
+        <div class="navBarItems" id="navBarItems">
+            <div class="inTownLogoContainer">
+                <a href="Home.html"> 
+                    <button class="InTownLogo">InTown</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Event Reviews</h1>
+
+        <!-- Submit Review Form -->
+        <section>
+            <h2>Submit a Review</h2>
+            <form id="review-form">
+                <select id="event-select" required>
+                    <option value="">Select Event</option>
+                    <!-- Options populated by JavaScript or server-side code -->
+                </select><br>
+                <textarea id="review-text" placeholder="Your review..." required></textarea><br>
+                <input type="number" id="review-rating" min="1" max="5" placeholder="Rating (1-5)" required><br>
+                <input type="file" id="review-photos" multiple><br>
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+
+        <!-- Display Reviews -->
+        <section>
+            <h2>Reviews</h2>
+            <ul id="review-list">
+                <!-- Reviews will be dynamically populated -->
+            </ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
