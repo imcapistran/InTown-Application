@@ -33,7 +33,7 @@ button:hover, .fileButton:hover, input[type=submit]:hover {
     color: white;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=submit], input[type=checkbox], textarea, .startTime, .endTime{
+input[type=text], input[type=password], input[type=email], input[type=submit], input[type=checkbox], input[type=number], textarea, select, .startTime, .endTime{
     margin-bottom: 10px; 
     border-radius: 5px;
     border: none;
