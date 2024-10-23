@@ -34,6 +34,7 @@
 
     <div class="container">
         <h1>Create and Upload Event</h1>
+        <div class="form-wrapper">
         <form id="event-form" name="uploadEvent" onsubmit="return validateForm()">
             <!-- Merged Fields -->
             <input type="text" id="eventName" name="eventName" placeholder="Event Name" required><br>
@@ -47,7 +48,7 @@
             <input type="datetime-local" id="startTime" name="startTime" required><br>
             <label for="endTime">End Time:</label>
             <input type="datetime-local" id="endTime" name="endTime" required><br>
-
+            
             <!-- File Upload from Upload Form -->
             <label for="myFile" class="fileButton"> Upload photo/image </label>
             <input type="file" id="myFile" name="myFile"><br>
@@ -55,7 +56,7 @@
             <!-- Submit Button -->
             <input type="submit" class="submitButton" value="Create Event">
         </form>
-
+    </div> 
         <p id="fileName"></p>
     </div>
 

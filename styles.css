@@ -1,6 +1,8 @@
 body {
     background-image: linear-gradient(to bottom,hwb(241 73% 9%), darkslateblue);
     margin: 0;
+    justify-content: center;
+    align-items: center;
     font-family: Helvetica, sans-serif;
     display: flex;
     height:  100vh;
@@ -10,7 +12,8 @@ body {
 form {
   display: inline-flex; 
   background-color: rgb(210, 208, 235); 
-  margin: auto;
+  margin: 0 auto;
+  width: fit-content;
   justify-content: center;
   border-radius: 25px;
   align-items: center;
@@ -68,3 +71,20 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
     color: white;
     margin-bottom: 10px;
 }
+
+.container {
+    display: flex;
+    flex-direction: column; /* Stack the title and the form vertically */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center; /* Centers the title text horizontally */
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content; /* Ensures the form is centered inside this wrapper */
+}
+
