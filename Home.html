@@ -5,7 +5,6 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        
         <nav class="navBarContainer">
             <div class="navBarItems" id="navBarItems">
                 <div class="loginButtonContainer">
@@ -23,33 +22,36 @@
                         <button class="InTownLogo">InTown</button>
                      </a>
                 </div>
+                <div class="reviewContainer">
+                    <a href="Reviews.html"> 
+                        <button class="review">Reviews</button>
+                     </a>
+                </div>
             </div>
         </nav>
             
-            <form name="uploadEvent" onsubmit="return validateForm()">
-                <div name="uploadEventContainer">
-                    <h1>Upload an Event</h1>
+        <form name="uploadEvent" onsubmit="return validateForm()">
+            <div name="uploadEventContainer">
+                <h1>Upload an Event</h1>
                    
-                    <input type="text" id="eventName" name="eventName" placeholder="Event Name" required>
-                    <br/>
-                 
-                    
-                    <input type="text" id="eventAddress" name="eventAddress" placeholder="Event Address" required>
-                    <br/>
-                    <textarea id="eventDescription" name="eventDescription" placeholder="Enter your event description here."></textarea>
-                    <br/>
-                    <label for="startTime">Start:</label>
-                    <input type="datetime-local" id="startTime" name="startTime" class="startTime" required>
-                    <br/>
-                    <label for="endTime">End:</label>
-                    <input type="datetime-local" id="endTime" name="endTime" class="endTime" required>
-                    <br/>
-                    <label for="myFile" class="fileButton">Choose File</label>
-                    <input type="file" id="myFile" class="myFile" name="myFile">
-                    <br/>
-                    <input type="submit" class="submitButton" value="Upload">
-                </div>
-            </form>
+                <input type="text" id="eventName" name="eventName" placeholder="Event Name" required>
+                <br/>        
+                <input type="text" id="eventAddress" name="eventAddress" placeholder="Event Address" required>
+                <br/>
+                <textarea id="eventDescription" name="eventDescription" placeholder="Enter your event description here."></textarea>
+                <br/>
+                <label for="startTime">Start:</label>
+                <input type="datetime-local" id="startTime" name="startTime" class="startTime" required>
+                <br/>
+                <label for="endTime">End:</label>
+                <input type="datetime-local" id="endTime" name="endTime" class="endTime" required>
+                <br/>
+                <label for="myFile" class="fileButton">Choose File</label>
+                <input type="file" id="myFile" class="myFile" name="myFile">
+                <br/>
+                <input type="submit" class="submitButton" value="Upload">
+            </div>
+        </form>
             <p id="fileName"></p>
 
             <script>
@@ -58,7 +60,5 @@
                     document.getElementById('fileName').textContent = 'Selected file: ' + fileName;
                 });
             </script>
-       
-          
     </body>
 </html>

@@ -6,20 +6,32 @@
 </head>
 
 <body>
+    <!----
     <nav class="navBarContainer">
         <div class="navBarItems" id="navBarItems">
+            <div class="loginButtonContainer">
+                <a href="login.html"> 
+                    <button class="login">Login</button>
+                 </a>
+            </div>   
             <div class="signUpContainer">
                 <a href="signUp.html">
                     <button class="signUp">Sign Up</button>
                 </a>
-            </div>
+            </div>                
             <div class="inTownLogoContainer">
-             <a href="Home.html"> 
-                <button class="InTownLogo">InTown</button>
-             </a>
+                <a href="Home.html"> 
+                    <button class="InTownLogo">InTown</button>
+                 </a>
+            </div>
+            <div class="reviewContainer">
+                <a href="Reviews.html"> 
+                    <button class="review">Reviews</button>
+                 </a>
             </div>
         </div>
     </nav>
+    -->
 
     <form name="userLogin" action="/app.js" onsubmit="return validateForm()" method="post" required>
         <div class="userSignUpContainer">
@@ -33,7 +45,11 @@
             </label>
             <br/>
             <button type="submit">Login</button>
+            <br/>
+            <br/>
+            <a href="signUp.html">New to InTown? Click here to sign up</a>
         </div>
+        
     </form> 
 </body>
 
