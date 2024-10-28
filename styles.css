@@ -23,6 +23,7 @@ button{
     background-color: rgb(72, 61, 239);
     color: white;
     border-radius: 5px;
+    margin-bottom: .4em;
     padding: 12px 8px;
     border:none;
     font-weight: bold;
@@ -59,12 +60,22 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
     justify-content: space-between;
     padding: 10px 20px;
     align-items: center;
-    
 }
 
 .navbarItems a {
     float: left; 
     font-size: 16px;
     color: white;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+img {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 1em;
+    border-radius: 5%;
+}
+
+.eventDashboard {
+    columns: 300px;
 }
