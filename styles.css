@@ -1,8 +1,9 @@
 body {
-    background-image: linear-gradient(to bottom,hwb(241 73% 9%), darkslateblue);
+    background-image: repeating-linear-gradient(to bottom,hwb(241 73% 9%), darkslateblue);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     font-family: Helvetica, sans-serif;
-    display: flex;
     height:  100vh;
     
 }
@@ -16,6 +17,7 @@ form {
   align-items: center;
   padding: 1.5rem 2rem;
   text-align: center;
+  width: 35%;
   
 }
 /*button styling */
@@ -56,21 +58,48 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
 
 
 .navBarContainer {
-    display: inline-flex;
-    justify-content: space-between;
-    padding: 10px 20px;
+    display: flex;
+    position: sticky;
+    color: white;
+    background-color: cornflowerblue;
     align-items: center;
+    justify-content: space-between;
+    top: 0px;
+    padding: 10px 20px;
+    
 }
 
-.navbarItems a {
-    float: left; 
-    font-size: 16px;
+.navList {
+    display: flex;
+    list-style: noned;
+}
+
+.navList li {
+    margin-right: 20px;
+}
+
+.navList a {
+    display: flex;
+    text-decoration: none;
+    font-size: 18px;
     color: white;
-    margin-bottom: 5px;
+}
+
+.navTitle a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+
+.navList {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
 }
 
 img {
-    display: inline-flex;
+    display: flex;
     width: 100%;
     margin-bottom: 1em;
     border-radius: 5%;
@@ -78,4 +107,17 @@ img {
 
 .eventDashboard {
     columns: 300px;
+}
+
+.formContainer {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 25px;
+    font-style: bold;
 }
