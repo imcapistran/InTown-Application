@@ -4,8 +4,7 @@ body {
     background-attachment: fixed;
     margin: 0;
     font-family: Helvetica, sans-serif;
-    height:  100vh;
-    
+    height:  100vh;   
 }
 
 form {
@@ -18,7 +17,6 @@ form {
   padding: 1.5rem 2rem;
   text-align: center;
   width: 35%;
-  
 }
 /*button styling */
 button{
@@ -60,18 +58,14 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
 .navBarContainer {
     display: flex;
     position: sticky;
-    color: white;
-    background-color: cornflowerblue;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
     align-items: center;
     justify-content: space-between;
     top: 0px;
-    padding: 10px 20px;
+    padding: 5px 5px 0px 5px;
     
-}
-
-.navList {
-    display: flex;
-    list-style: noned;
 }
 
 .navList li {
@@ -81,16 +75,18 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
 .navList a {
     display: flex;
     text-decoration: none;
-    font-size: 18px;
-    color: white;
+    font-size: 12px;
+    color: black;
+    font-weight: bolder;
 }
 
 .navTitle a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 18px;
+    font-weight: bolder;
+    margin-right: 5px;
 }
-
 
 .navList {
     display: flex;
@@ -120,4 +116,11 @@ h1 {
     text-align: center;
     font-size: 25px;
     font-style: bold;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1px;
 }
