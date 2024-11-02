@@ -1,0 +1,127 @@
+body {
+    background-image: repeating-linear-gradient(to bottom,hwb(241 73% 9%), darkslateblue);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    height:  100vh;   
+}
+
+form {
+  display: inline-flex; 
+  background-color: rgb(210, 208, 235); 
+  margin: auto;
+  justify-content: center;
+  border-radius: 25px;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  width: 35%;
+}
+/*button styling */
+button{
+    background-color: rgb(72, 61, 239);
+    color: white;
+    border-radius: 5px;
+    margin-bottom: .4em;
+    padding: 12px 8px;
+    border:none;
+    font-weight: bold;
+}
+
+button:hover, .fileButton:hover, input[type=submit]:hover { 
+    background-color: rgb(56, 5, 99);
+    color: white;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=submit], input[type=checkbox], input[type=number], textarea, select, .startTime, .endTime{
+    margin-bottom: 10px; 
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+}
+
+.myFile {
+    display: none;
+}
+
+.fileButton {
+    padding: 14px 20px;
+    background-color: rgb(72, 61, 239);
+    border-radius: 25px;
+    color: white;
+    display: inline-block;
+    margin-bottom: 10px;
+    }
+
+
+.navBarContainer {
+    display: flex;
+    position: sticky;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
+    align-items: center;
+    justify-content: space-between;
+    top: 0px;
+    padding: 5px 5px 0px 5px;
+    
+}
+
+.navList li {
+    margin-right: 20px;
+}
+
+.navList a {
+    display: flex;
+    text-decoration: none;
+    font-size: 12px;
+    color: black;
+    font-weight: bolder;
+}
+
+.navTitle a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-right: 5px;
+}
+
+.navList {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+img {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1em;
+    border-radius: 5%;
+}
+
+.eventDashboard {
+    columns: 300px;
+}
+
+.formContainer {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 25px;
+    font-style: bold;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px;
+}
