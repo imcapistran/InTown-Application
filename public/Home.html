@@ -21,7 +21,7 @@
         </nav>
      
     <div name="formContainer" class="formContainer">    
-        <form name="uploadEvent" onsubmit="return validateForm()">
+        <form name="uploadEvent" method="post" action="/uploadEvent" onsubmit="return validateForm()" enctype="multipart/form-data">
             <div name="uploadEventContainer">
                 <h1>Upload an Event</h1>    
                 <input type="text" id="eventName" name="eventName" placeholder="Event Name" required>
@@ -39,17 +39,18 @@
                 <label for="myFile" class="fileButton">Choose File</label>
                 <input type="file" id="myFile" class="myFile" name="myFile">
                 <br/>
-                <input type="submit" class="submitButton" value="Upload">
+                <input type="submit" class="submitButton" onclick="submitForm()" value="Upload">
             </div>
         </form>
         <p id="fileName"></p>
     </div>
 
-            <script>
+            <script src="app.js">
                 document.getElementById('myFile').addEventListener('change', function () {
                     var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
                     document.getElementById('fileName').textContent = 'Selected file: ' + fileName;
                 });
             </script>
+
     </body>
 </html>
