@@ -101,10 +101,6 @@ img {
     border-radius: 5%;
 }
 
-.eventDashboard {
-    columns: 300px;
-}
-
 .formContainer {
 display: flex;
 align-items: center;
@@ -161,6 +157,7 @@ h1 {
     min-height: 100vh;
 }
 
+@media (max-height: 700px) {
 .bentoContainer {
     display: flex;
     justify-content: center;
@@ -168,10 +165,11 @@ h1 {
     background-color: white;
     opacity: 0.8;
     min-width: 70%;
-    min-height: 70vh;
+    min-height: 50vh;
     border-radius: 2em;
     gap: 1em;
     padding: 2em;
+}
 }
 
 .col-left {
