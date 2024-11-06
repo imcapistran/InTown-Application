@@ -125,3 +125,77 @@ h1 {
     border-radius: 5px;
     padding: 5px;
 }
+
+.bento_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.bentoContainer {
+    display: flex;
+    background-color: white;
+    opacity: 0.8;
+    min-width: 70%;
+    min-height: 70vh;
+    border-radius: 2em;
+    gap: 1em;
+    padding: 2em;
+}
+
+.col-left {
+    flex: 1;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.col-right {
+    flex: 1;
+    border-radius: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.row {
+    flex: 1;
+    border-radius: 2em;
+}
+
+.row3 {
+    display: flex;
+    border: none;
+    gap: 1em;
+}
+
+.row-col {
+    flex: 1;
+    border-radius: 2em;
+}
+
+.row1 {
+    background-color: blueviolet;
+}
+
+.row2 {
+    background-color: brown;
+}
+
+.left {
+    background-color: yellow;
+}
+
+.right {
+    background-color: green;
+}
+
+.top {
+    background-color: red;
+}
+
+.bottom {
+    background-color: blue;
+}
