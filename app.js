@@ -9,21 +9,30 @@ function validateForm() {
   }
 
   //connection to routes
-  const express = require('express');
-  const session = require('express-session');
   const userRoute = require('./routes/user');
   const eventRoute = require('./routes/event');
   //middleware
-const store = new session.MemoryStore();
+const express = require('express');
+const session = require('express-session');
+//const passport = require('passport');
+
 const app = express();
+/*
+const initializePassport = require('./passport_config');
+initializePassport(passport,
+  user_name => users.find(user => user.email === user_name),
+  email => users.find(user => user.id === email)
+);
 
 app.use(session({
-  secret: 'some secret',
-  cookie: {maxAge: 3000000},
+  secret: 'secret',
+  resave: false,
   saveUninitialized: false,
-  store
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+*/
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

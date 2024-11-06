@@ -21,7 +21,7 @@ router.post('/', (req,res) => {
   if (event_name && start_time && end_time && event_location){
     try {
     db.promise().query(`INSERT INTO Event (user_name, event_name, start_time, end_time, event_description, event_location, event_img) VALUES('testUser', '${event_name}', '${start_time}', '${end_time}', '${event_description}', '${event_location}', '${event_img}')`);
-    res.status(201).redirect('http://127.0.0.1:5500/Home.html');
+    res.status(201).redirect('/Home.html');
     }
     catch (err) {
       console.log(err);

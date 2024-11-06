@@ -18,14 +18,8 @@ router.get('/', async (req,res) => {
     if (rows.length === 0) {
       return res.status(404).send('User not found');
     }
-
     const storedPassword = rows[0];
 
-    if (In_password == storedPassword) {
-      res.status(200).send('Password accepted');
-    } else {
-      res.status(401).send('Incorrect password');
-    }
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error');
@@ -35,17 +29,17 @@ router.get('/', async (req,res) => {
 //post requests
 
 //create account
-router.post('/', (req,res) => {
-  const {user_name, email_add, password, user_location} = req.body;
-  if (user_name && email_add && password){
+router.post('/', async (req,res) => {
+  const {user_name, email_add, user_location} = req.body;
     try {
-    db.promise().query(`INSERT INTO User VALUES('${user_name}', '${email_add}','${password}', '${user_location}')`);
-    res.status(201).redirect('http://127.0.0.1:5500/login.html');
+      const hashedpassword = await bcrypt.hash(req.body.password, 10);
+    db.promise().query(`INSERT INTO User VALUES('${user_name}', '${email_add}','${hashedpassword}', '${user_location}')`);
+    res.status(201).redirect('/login.html');
     }
     catch (err) {
       console.log(err);
+      redirect('/signUp.html');
     }
-  }
 
 });
   
