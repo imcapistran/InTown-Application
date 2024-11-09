@@ -47,15 +47,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
-app.get('/Home', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'Home.html'));
-});
-app.get('/signUp', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'signUp.html'));
-});
+
+
   //start server
   app.listen(3000, () => {
     console.log('server is running on port 3000');

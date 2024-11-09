@@ -1,12 +1,12 @@
+//establish event route
 const { Router } = require('express');
 const db = require('../database');
 const router = Router();
 
 
-//get requests
 
 //login
-router.get('/', async (req,res) => {
+router.get('/login', async (req,res) => {
   const {In_user_name, In_password} = req.query;
   if (!In_user_name || !In_password) {
     return res.status(400).send('Username and password are required');
@@ -19,6 +19,7 @@ router.get('/', async (req,res) => {
       return res.status(404).send('User not found');
     }
     const storedPassword = rows[0];
+    res.redirect('/BentoDesign');
 
   } catch (error) {
     console.error(error);
@@ -29,16 +30,16 @@ router.get('/', async (req,res) => {
 //post requests
 
 //create account
-router.post('/', async (req,res) => {
+router.post('/createuser', async (req,res) => {
   const {user_name, email_add, password, user_location} = req.body;
     try {
       //const hashedpassword = await bcrypt.hash(req.body.password, 10);
     db.promise().query(`INSERT INTO User VALUES('${user_name}', '${email_add}','${password}', '${user_location}')`);
-    res.status(201).redirect('/login');
+    res.status(201).redirect('/login.html');
     }
     catch (err) {
       console.log(err);
-      redirect('/signUp');
+      redirect('/signUp.html');
     }
 
 });
