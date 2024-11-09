@@ -9,28 +9,24 @@
     <nav class="navBarContainer">
         <div class="navBarItems" id="navBarItems">
             <div class="signUpContainer">
-                <a href="signUp.html">
+                <a href="/signUp">
                     <button class="signUp">Sign Up</button>
                 </a>
             </div>
             <div class="inTownLogoContainer">
-             <a href="Home.html"> 
+             <a href="/Home"> 
                 <button class="InTownLogo">InTown</button>
              </a>
             </div>
         </div>
     </nav>
 
-    <form name="userLogin" action="/app.js" onsubmit="return validateForm()" method="post" required>
+    <form name="userLogin" action="http://localhost:3000/user" method="get" enctype="application/x-www-form-urlencoded" required>
         <div class="userSignUpContainer">
             <h1>Login</h1>
-            <input type="email" id="email" name="email" placeholder= "Email" required>
+            <input type="text" id="username" name="In_user_name" placeholder= "username" required>
             <br/>
-            <input type="password" id="pwd" name="pwd" placeholder="Password" required>
-            <br/>
-            <label class="checkbox">
-            <input type="checkbox" id="rememberMe" name="rememberMe"> Remember me
-            </label>
+            <input type="password" id="pwd" name="In_password" placeholder="Password" required>
             <br/>
             <button type="submit">Login</button>
         </div>

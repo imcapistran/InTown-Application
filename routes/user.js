@@ -30,15 +30,15 @@ router.get('/', async (req,res) => {
 
 //create account
 router.post('/', async (req,res) => {
-  const {user_name, email_add, user_location} = req.body;
+  const {user_name, email_add, password, user_location} = req.body;
     try {
-      const hashedpassword = await bcrypt.hash(req.body.password, 10);
-    db.promise().query(`INSERT INTO User VALUES('${user_name}', '${email_add}','${hashedpassword}', '${user_location}')`);
-    res.status(201).redirect('/login.html');
+      //const hashedpassword = await bcrypt.hash(req.body.password, 10);
+    db.promise().query(`INSERT INTO User VALUES('${user_name}', '${email_add}','${password}', '${user_location}')`);
+    res.status(201).redirect('/login');
     }
     catch (err) {
       console.log(err);
-      redirect('/signUp.html');
+      redirect('/signUp');
     }
 
 });

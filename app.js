@@ -11,6 +11,7 @@ function validateForm() {
   //connection to routes
   const userRoute = require('./routes/user');
   const eventRoute = require('./routes/event');
+  const path = require('path');
   //middleware
 const express = require('express');
 const session = require('express-session');
@@ -36,16 +37,25 @@ app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use((req,res,next) => {
-  console.log(store);
-  console.log(`${req.method} - ${req.url}`);
-  next();
-})
 
 //regester routes
 app.use('/user', userRoute);
 app.use('/event', eventRoute);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+app.get('/Home', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'Home.html'));
+});
+app.get('/signUp', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'signUp.html'));
+});
   //start server
   app.listen(3000, () => {
     console.log('server is running on port 3000');
