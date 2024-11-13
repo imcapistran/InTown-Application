@@ -124,29 +124,46 @@ h1 {
 
 /* added by Amy for reviews.html */
 .star-rating {
-    display: inline-flex;
-    justify-content: center;
-    font-size: 2em;
+    direction: rtl; /* Reverse the layout of stars */
+    display: inline-block;
 }
 
 .star-rating input[type="radio"] {
-    display: none;
+    display: none; /* Hide the radio buttons */
 }
 
 .star-rating label {
-    color: #ccc;
+    color: #ccc; /* Default gray color for unselected stars */
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 3em; /* Make the stars larger */
+    transition: color 0.2s ease; /* Smooth transition for color change */
 }
 
 .star-rating input[type="radio"]:checked ~ label {
-    color: gold;
+    color: gold; /* Keeps selected stars gold */
 }
 
+.star-rating input[type="radio"]:checked ~ label ~ label {
+    color: gold; /* Keeps all selected stars gold */
+}
+
+/* Highlight stars as they are hovered over */
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: gold;
+    color: gold; /* Highlight hovered stars and stars to the right in gold */
 }
+
+.star-rating label:hover ~ label {
+    color: #ccc; /* Revert color to gray for stars to the left of the hovered star */
+}
+
+/* Highlight the stars in gold between the edge and the hovered star */
+.star-rating input[type="radio"]:hover ~ label,
+.star-rating input[type="radio"]:hover ~ label ~ label {
+    color: gold; /* Highlight stars up to the hovered one in gold */
+}
+
+
 
 
 
