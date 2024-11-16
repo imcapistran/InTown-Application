@@ -37,7 +37,7 @@ app.use(express.static('public'));
 
 // Root route to serve an HTML file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'Home.html'));
+    res.sendFile(path.join(__dirname, 'public', 'signUp.html'));
 });
 
 // Route to handle file uploads
