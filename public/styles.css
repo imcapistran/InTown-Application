@@ -1,5 +1,5 @@
 body {
-    background-image: repeating-linear-gradient(to top,hwb(0 100% 0%), rgb(25, 124, 22));
+    background-image: repeating-linear-gradient(to top, rgb(208, 201, 255), darkslateblue);
     background-repeat: no-repeat;
     background-attachment: fixed;
     margin: 0;
