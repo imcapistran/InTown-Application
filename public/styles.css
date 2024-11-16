@@ -1,5 +1,5 @@
 body {
-    background-image: repeating-linear-gradient(to bottom,hwb(241 73% 9%), darkslateblue);
+    background-image: repeating-linear-gradient(to top,hwb(0 100% 0%), rgb(25, 124, 22));
     background-repeat: no-repeat;
     background-attachment: fixed;
     margin: 0;
@@ -66,6 +66,11 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
     top: 0px;
     padding: 5px 5px 0px 5px;
     
+}
+
+.logo {
+    width: 100px;
+    height: auto;
 }
 
 .navList li {
@@ -187,7 +192,7 @@ h2 {
     perspective: 700px;
     transform-style: preserve-3d;
     transition: transform 0.6s;
-    min-height: 250px;
+    min-height: 300px;
     width: 32%;
 }
 
@@ -242,6 +247,7 @@ h2 {
 
 .bentoContainer .card:nth-child(4) .back {
     background-color: #FFD700; /* Gold */
+    color: black;
 }
 
 .bentoContainer .card:nth-child(5) .back {
@@ -254,6 +260,7 @@ h2 {
 
 .bentoContainer .card:nth-child(7) .back {
     background-color: #00FA9A; /* MediumSpringGreen */
+    color: black;
 }
 
 .bentoContainer .card:nth-child(8) .back {
