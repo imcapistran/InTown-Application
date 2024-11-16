@@ -94,14 +94,6 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
     justify-content: space-between;
 }
 
-img {
-    display: flex;
-    width: 100%;
-    border-radius: 5%;
-    height: auto;
-    object-fit: cover;
-}
-
 .formContainer {
 display: flex;
 align-items: center;
@@ -113,6 +105,14 @@ h1 {
     text-align: center;
     font-size: 25px;
     font-style: bold;
+}
+
+h2 {
+    text-align: center;
+    font-size: 25px;
+    font-style: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
 }
 
 .search {
@@ -149,95 +149,33 @@ h1 {
     color: gold;
 }
 
-
-
 .bento_wrapper {
+    min-height: 100vh;
+    padding: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 1em;
 }
 
-@media (max-height: 700px) {
+
 .bentoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     background-color: white;
     opacity: 0.8;
     border-radius: 2em;
     gap: 2em;
     padding: 2em;
-}
-}
-
-.col-left, .col-right {
-    flex: 1;
-    border-radius: 2em;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.col-right{
-    overflow: hidden;
-}
-
-.row {
-    justify-content: center;
-    align-items: center;
-    gap: 1em;
-    border-radius: 2em;
-    overflow: hidden;
-}
-
-
-.row3 .row-col {
-    flex: 1;
-}
-
-.row-col {
-    flex: 1;
-    border-radius: 2em;
-    overflow:hidden;
-}
-
-.row1 {
-    background-color: blueviolet;
-}
-
-.row2 {
-    background-color: brown;
-}
-
-.left {
-    background-color: yellow;  
-}
-
-.right {
-    background-color: green;
-}
-
-.top {
-    background-color: red;
-}
-
-.bottom {
-    background-color: blue;
+    width: 70%;
 }
 
 
 /*Card content to transform */
 .card {
-    display: flex;
-    position: relative;
-    perspective: 1000px;
+    display: inline-block;
+    perspective: 700px;
     transform-style: preserve-3d;
     transition: transform 0.6s;
-    min-height: 300px;
-    width: 100%;
-
+    min-height: 250px;
+    width: 32%;
 }
 
 .card:hover{
@@ -249,16 +187,67 @@ h1 {
     height: 100%;
     position: absolute;
     backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .front, .back {
     border-radius: 1em;    
 }
 
+.front {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.front img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 1em;
+}
+
 .back {
     background: blue;
+    color: white;
     transform: rotateY(180deg);
+    text-align: center;
 }
+
+/* Define a few background colors */
+.bentoContainer .card:nth-child(1) .back {
+    background-color: #FF6347; /* Tomato */
+}
+
+.bentoContainer .card:nth-child(2) .back {
+    background-color: #4682B4; /* SteelBlue */
+}
+
+.bentoContainer .card:nth-child(3) .back {
+    background-color: #32CD32; /* LimeGreen */
+}
+
+.bentoContainer .card:nth-child(4) .back {
+    background-color: #FFD700; /* Gold */
+}
+
+.bentoContainer .card:nth-child(5) .back {
+    background-color: #8A2BE2; /* BlueViolet */
+}
+
+.bentoContainer .card:nth-child(6) .back {
+    background-color: #FF1493; /* DeepPink */
+}
+
+.bentoContainer .card:nth-child(7) .back {
+    background-color: #00FA9A; /* MediumSpringGreen */
+}
+
+.bentoContainer .card:nth-child(8) .back {
+    background-color: #FF8C00; /* DarkOrange */
+}
+
+.bentoContainer .card:nth-child(9) .back {
+    background-color: #2E8B57; /* SeaGreen */
+}
+
