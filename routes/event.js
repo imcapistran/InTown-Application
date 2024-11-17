@@ -24,7 +24,7 @@ router.post('/uploadEvent', async (req,res) => {
   if (event_name && start_time && end_time && event_location){
     try {
     db.promise().query(`INSERT INTO Event (user_name, event_name, start_time, end_time, event_description, event_location, event_img) VALUES('${user_name[0].user_name}', '${event_name}', '${start_time}', '${end_time}', '${event_description}', '${event_location}', '${event_img}')`);
-    res.status(201).redirect('/public/BentoDesign.html');
+    res.status(201).redirect('/public/Event.html');
     }
     catch (err) {
       console.log(err);

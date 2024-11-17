@@ -19,23 +19,23 @@
         </nav>
      
     <div name="formContainer" class="formContainer">    
-        <form name="uploadEvent" method="post" action="/uploadEvent" onsubmit="return validateForm()" enctype="multipart/form-data">
+        <form name="uploadEvent" method="post" action="/event/uploadEvent" onsubmit="return validateForm()">
             <div name="uploadEventContainer">
                 <h1>Upload an Event</h1>    
-                <input type="text" id="eventName" name="eventName" placeholder="Event Name" required>
+                <input type="text" id="eventName" name="event_name" placeholder="Event Name" required>
                 <br/>        
-                <input type="text" id="eventAddress" name="eventAddress" placeholder="Event Address" required>
+                <input type="text" id="eventAddress" name="event_location" placeholder="Event Address" required>
                 <br/>
-                <textarea id="eventDescription" name="eventDescription" placeholder="Enter your event description here."></textarea>
+                <textarea id="eventDescription" name="event_description" placeholder="Enter your event description here."></textarea>
                 <br/>
                 <label for="startTime">Start:</label>
-                <input type="datetime-local" id="startTime" name="startTime" class="startTime" required>
+                <input type="datetime-local" id="startTime" name="start_time" class="startTime" required>
                 <br/>
                 <label for="endTime">End:</label>
-                <input type="datetime-local" id="endTime" name="endTime" class="endTime" required>
+                <input type="datetime-local" id="endTime" name="end_time" class="endTime" required>
                 <br/>
                 <label for="myFile" class="fileButton">Choose File</label>
-                <input type="file" id="myFile" class="myFile" name="myFile">
+                <input type="file" id="myFile" class="myFile" name="event_img">
                 <br/>
                 <input type="submit" class="submitButton" onclick="submitForm()" value="Upload">
             </div>
