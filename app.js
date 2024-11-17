@@ -65,11 +65,12 @@ app.use('/public', checkAuthenticated, express.static(path.join(__dirname, 'publ
 app.use('/login', express.static(path.join(__dirname, 'login')));
 
 app.get('/',checkAuthenticated, (req, res) => {
+  res.redirect('/public/Event.html');
 });
 
 app.get('/login', (req, res) => {
   console.log('loading login page');
-  res.redirect('/login/login.html');;
+  res.redirect('/login/login.html');
 });
 
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
