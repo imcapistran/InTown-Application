@@ -21,7 +21,7 @@
         
         <h2>FEATURED EVENTS</h2>
 <div class="bento_wrapper">
-    <div class="bentoContainer">
+    <div class="bentoContainer" id="eventsContainer">
         <div class="card">
             <div class="card-face front">
                 <img src="images/aquarium.jpeg" alt="Aquarium Event">
@@ -192,6 +192,38 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("eventsContainer");
 
+        // Fetch event data from the server
+        fetch("http://localhost:3000/event")
+            .then(response => response.json())
+            .then(events => {
+                // Clear the container
+                container.innerHTML = "";
+
+                // Loop through events and create cards
+                events.forEach(event => {
+                    const card = `
+                        <div class="card">
+                            <div class="card-face front">
+                                <img src="images/rich_people.jpeg" alt="${event.event_name}">
+                            </div>
+                            <div class="card-face back">
+                                <h4>${event.event_name}</h4>
+                                <p>Description: ${event.event_description}</p>
+                                <p>Address: ${event.event_location}</p>
+                                <p>Start time: ${event.start_time}</p>
+                                <p>End Time: ${event.end_time}</p>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            })
+            .catch(error => console.error("Error fetching events:", error));
+    });
+</script>
     </body>
 </html>
