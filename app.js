@@ -1,6 +1,4 @@
 
-
-
 //Checks if inputs are blank, Needs Password validators!!
 function validateForm() {
     var x = document.forms["userLogin"].value;
@@ -10,60 +8,92 @@ function validateForm() {
     }
   }
 
-function submitForm () {
-  var name = document.getElementById("name").value;
-  var email = document.getElementById("email").value;
+  //connection to routes
+  const userRoute = require('./routes/user');
+  const eventRoute = require('./routes/event');
+  const path = require('path');
+  const db = require('./database');
+  //middleware
+const express = require('express');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+const flash = require('express-flash');
 
-  fetch('/process', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({name: name, email: email})
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error:', error)
-  })
+// initialze using local strategy
+const initializePassport = require('./passport_config');
+initializePassport(
+  passport,
+  async user_name => {
+    const [temp] = await db.promise().query(`SELECT user_name, email_add, password FROM User WHERE BINARY user_name = '${user_name}'`);
+    return temp[0];
+  },
+  async email => {
+  const temp = await db.promise().query(`SELECT user_name, email_add, password FROM User WHERE email_add = '${email}'`);
+    return temp[0];
+  }
+);
 
+
+const users = [
+  {
+    user_name: "bob",
+    email: "bob@wow",
+    password: "pass"
+  }
+];
+
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(flash());
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//regester routes
+app.use('/user', userRoute);
+app.use('/event', checkAuthenticated, eventRoute);
+
+app.use('/public', checkAuthenticated, express.static(path.join(__dirname, 'public')));
+app.use('/login', express.static(path.join(__dirname, 'login')));
+
+app.get('/',checkAuthenticated, (req, res) => {
+});
+
+app.get('/login', (req, res) => {
+  console.log('loading login page');
+  res.redirect('/login/login.html');;
+});
+
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+  successRedirect: '/public/Event.html',
+  failureRedirect: '/login/login.html',
+  failureFlash: true
+}));
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  res.redirect('/login/login.html');
 }
 
-// New code for handling review form submission with star rating
-document.addEventListener("DOMContentLoaded", () => {
-  const reviewForm = document.getElementById("review-form");
-  const reviewList = document.getElementById("review-list");
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/login/login.html');
+  }
+  next();
+}
 
-  reviewForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      
-      // Capture the selected rating from the star rating input
-      const rating = document.querySelector('input[name="rating"]:checked')?.value;
-      const reviewText = document.getElementById("review-text").value;
-
-      if (!rating) {
-          alert("Please select a rating.");
-          return;
-      }
-
-      // Create a new review element and add it to the review list
-      const listItem = document.createElement("li");
-      listItem.classList.add("review-item");
-
-      listItem.innerHTML = `
-          <h3>Event</h3> <!-- Replace with actual event data if available -->
-          <p><strong>Rating:</strong> ${"★".repeat(rating)}${"☆".repeat(5 - rating)}</p>
-          <p>${reviewText}</p>
-          <p><em>- User</em></p>
-      `;
-
-      reviewList.appendChild(listItem);
-
-      // Optionally, clear the form after submission
-      reviewForm.reset();
+  //start server
+  app.listen(3000, () => {
+    console.log('server is running on port 3000');
   });
-});
-  
-  
