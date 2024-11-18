@@ -14,6 +14,8 @@
             <ul class="navList">
                 <li class="navItem"><a href="Event.html">Events</a></li>
                 <li class="navItem"><a href="Reviews.html">Reviews</a></li>
+                <li class="navItem"><a href="/login/signUp.html">Sign up</a></li>
+                <li class="navItem"><a href="/login/login.html">Login</a></li>
             </ul>  
         </nav>
         
@@ -203,10 +205,11 @@
 
                 // Loop through events and create cards
                 events.forEach(event => {
+                    const imageUrl = `data:image/jpeg;base64,${event.event_img}`;
                     const card = `
                         <div class="card">
                             <div class="card-face front">
-                                <img src="images/rich_people.jpeg" alt="${event.event_name}">
+                                <img src="${imageUrl}" alt="${event.event_name}">
                             </div>
                             <div class="card-face back">
                                 <h4>${event.event_name}</h4>
@@ -214,6 +217,8 @@
                                 <p>Address: ${event.event_location}</p>
                                 <p>Start time: ${event.start_time}</p>
                                 <p>End Time: ${event.end_time}</p>
+                                <p>Cost: ${event.event_cost}</p>
+                                <p>Posted by: ${event.user_name}</p>
                             </div>
                         </div>
                     `;
