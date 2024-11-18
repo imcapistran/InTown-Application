@@ -4,6 +4,6 @@ const mysql = require('mysql2');
 module.exports = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'admin',
+    password: 'password',
     database: 'intowndb'
 });

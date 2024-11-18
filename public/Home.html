@@ -19,7 +19,7 @@
         </nav>
      
     <div name="formContainer" class="formContainer">    
-        <form name="uploadEvent" method="post" action="/event/uploadEvent" onsubmit="return validateForm()">
+        <form name="uploadEvent" method="post" action="/event/uploadEvent" onsubmit="return validateForm()" enctype="multipart/form-data">
             <div name="uploadEventContainer">
                 <h1>Upload an Event</h1>    
                 <input type="text" id="eventName" name="event_name" placeholder="Event Name" required>
@@ -28,6 +28,8 @@
                 <br/>
                 <textarea id="eventDescription" name="event_description" placeholder="Enter your event description here."></textarea>
                 <br/>
+                <input type="number" id="event_cost" name="event_cost" placeholder="0.00" step="0.01" min="0" value="0.00">
+                <br/>
                 <label for="startTime">Start:</label>
                 <input type="datetime-local" id="startTime" name="start_time" class="startTime" required>
                 <br/>
@@ -35,20 +37,12 @@
                 <input type="datetime-local" id="endTime" name="end_time" class="endTime" required>
                 <br/>
                 <label for="myFile" class="fileButton">Choose File</label>
-                <input type="file" id="myFile" class="myFile" name="event_img">
+                <input type="file" id="myFile" class="myFile" name="event_img" accept="image/*">
                 <br/>
                 <input type="submit" class="submitButton" onclick="submitForm()" value="Upload">
             </div>
         </form>
         <p id="fileName"></p>
     </div>
-
-            <script src="app.js">
-                document.getElementById('myFile').addEventListener('change', function () {
-                    var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
-                    document.getElementById('fileName').textContent = 'Selected file: ' + fileName;
-                });
-            </script>
-
     </body>
 </html>

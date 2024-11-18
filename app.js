@@ -81,7 +81,6 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    console.log('user auth');
     return next();
   }
   console.log('user not auth');
