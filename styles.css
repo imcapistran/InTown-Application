@@ -1,32 +1,29 @@
 body {
-    background-image: linear-gradient(to bottom,hwb(241 73% 9%), darkslateblue);
+    background-image: repeating-linear-gradient(to top, rgb(208, 201, 255), darkslateblue);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
-    justify-content: center;
-    align-items: center;
     font-family: Helvetica, sans-serif;
-    display: flex;
-    height:  100vh;
-    
+    height:  100vh;   
 }
 
 form {
   display: inline-flex; 
   background-color: rgb(210, 208, 235); 
-  margin: 0 auto;
-  width: fit-content;
+  margin: auto;
   justify-content: center;
-  flex-direction: column;
   border-radius: 25px;
   align-items: center;
   padding: 1.5rem 2rem;
   text-align: center;
-  
+  width: 35%;
 }
 /*button styling */
 button{
     background-color: rgb(72, 61, 239);
     color: white;
     border-radius: 5px;
+    margin-bottom: .4em;
     padding: 12px 8px;
     border:none;
     font-weight: bold;
@@ -37,7 +34,7 @@ button:hover, .fileButton:hover, input[type=submit]:hover {
     color: white;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=submit], input[type=checkbox], textarea, .startTime, .endTime{
+input[type=text], input[type=password], input[type=email], input[type=submit], input[type=checkbox], input[type=number], textarea, select, .startTime, .endTime{
     margin-bottom: 10px; 
     border-radius: 5px;
     border: none;
@@ -59,88 +56,287 @@ input[type=text], input[type=password], input[type=email], input[type=submit], i
 
 
 .navBarContainer {
-    display: inline-flex;
+    display: flex;
+    position: sticky;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.8;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    align-items: left;
+    top: 0px;
+    padding: 5px 5px 0px 5px;
     
 }
 
-.navbarItems a {
-    float: left; 
-    font-size: 16px;
-    color: white;
-    margin-bottom: 10px;
+.logo {
+    width: 100px;
+    height: auto;
 }
 
-.container {
+.navList li {
+    margin-right: 20px;
+}
+
+.navList a {
     display: flex;
-    flex-direction: column; /* Stack the title and the form vertically */
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center; /* Centers the title text horizontally */
+    text-decoration: none;
+    font-size: 12px;
+    color: black;
+    font-weight: bolder;
 }
 
-.form-wrapper {
+.navTitle a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-right: 5px;
+}
+
+.navList {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content; /* Ensures the form is centered inside this wrapper */
+    list-style: none;
+    justify-content: space-between;
 }
 
-/* Container styling */
-.business-reviews {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+.formContainer {
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 100vh;
 }
 
-.review-grid {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: 200px; /* Default row height */
+h1 {
+    text-align: center;
+    font-size: 25px;
+    font-style: bold;
 }
 
-/* Review Card Styling */
-.review-card {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.review-card:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-}
-
-
-/* Larger Cards for Bento Box Style */
-.review-card:nth-child(2n) {
-    grid-row: span 2; /* Make every second card taller */
-}
-
-.review-card:nth-child(3n) {
-    grid-column: span 2; /* Make every third card wider */
-}
-
-/* Basic Typography and Spacing */
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    font-size: 25px;
+    font-style: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
 }
 
-.review-card h3 {
-    font-size: 1.25rem;
-    margin: 0 0 10px;
-    color: #333;
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px;
 }
 
-.review-card p {
+/* added by Amy for reviews.html */
+.star-rating {
+    direction: rtl; /* reverse star layout*/
+    display: inline-block;
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* hide radio buttons */
+}
+
+.star-rating label {
+    color: #ccc; 
+    cursor: pointer;
+    font-size: 3em; 
+    transition: color 0.2s ease; 
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: gold; 
+}
+
+.star-rating input[type="radio"]:checked ~ label ~ label {
+    color: gold; 
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold; 
+}
+
+.star-rating label:hover ~ label {
+    color: #ccc; 
+}
+
+.star-rating input[type="radio"]:hover ~ label,
+.star-rating input[type="radio"]:hover ~ label ~ label {
+    color: gold; 
+}
+
+.bento_wrapper {
+    min-height: 100vh;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.bentoContainer {
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 2em;
+    gap: 2em;
+    padding: 2em;
+    width: 70%;
+}
+
+
+/*Card content to transform */
+.card {
+    display: inline-block;
+    perspective: 700px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    min-height: 300px;
+    width: 32%;
+}
+
+.card:hover{
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.front, .back {
+    border-radius: 1em;    
+}
+
+.front {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.front img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 1em;
+}
+
+.back {
+    background: blue;
+    color: white;
+    transform: rotateY(180deg);
+    text-align: center;
+}
+
+/* Define a few background colors */
+.bentoContainer .card:nth-child(1) .back {
+    background-color: #FF6347; /* Tomato */
+}
+
+.bentoContainer .card:nth-child(2) .back {
+    background-color: #4682B4; /* SteelBlue */
+}
+
+.bentoContainer .card:nth-child(3) .back {
+    background-color: #32CD32; /* LimeGreen */
+}
+
+.bentoContainer .card:nth-child(4) .back {
+    background-color: #FFD700; /* Gold */
+    color: black;
+}
+
+.bentoContainer .card:nth-child(5) .back {
+    background-color: #8A2BE2; /* BlueViolet */
+}
+
+.bentoContainer .card:nth-child(6) .back {
+    background-color: #FF1493; /* DeepPink */
+}
+
+.bentoContainer .card:nth-child(7) .back {
+    background-color: #00FA9A; /* MediumSpringGreen */
+    color: black;
+}
+
+.bentoContainer .card:nth-child(8) .back {
+    background-color: #FF8C00; /* DarkOrange */
+}
+
+.bentoContainer .card:nth-child(9) .back {
+    background-color: #2E8B57; /* SeaGreen */
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    text-align: center;
+}
+
+.user-info .profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid darkslateblue;
+    margin-right: 20px;
+}
+
+.user-info h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.user-info p {
     margin: 5px 0;
-    color: #555;
+    font-size: 1em;
+    color: gray;
+}
+
+.user-reviews ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.user-reviews li {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-reviews li:hover {
+    transform: translateY(-5px);
+}
+
+.user-reviews li h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: darkslateblue;
+}
+
+.user-reviews li p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: gray;
+}
+
+.user-reviews li p:first-of-type {
+    font-weight: bold;
+    color: gold;
 }
