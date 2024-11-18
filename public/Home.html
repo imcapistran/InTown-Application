@@ -13,15 +13,13 @@
             <ul class="navList">
                 <li class="navItem"><a href="Event.html">Events</a></li>
                 <li class="navItem"><a href="Reviews.html">Reviews</a></li>
-                <li class="navItem"><a href="signUp.html">Sign up</a></li>
-                <li class="navItem"><a href="login.html">Login</a></li>
             </ul>  
         </nav>
      
     <div name="formContainer" class="formContainer">    
         <form name="uploadEvent" method="post" action="/event/uploadEvent" onsubmit="return validateForm()">
             <div name="uploadEventContainer">
-                <h1>Upload an Event</h1>    
+                <h1>Upload Your Event!</h1>    
                 <input type="text" id="eventName" name="event_name" placeholder="Event Name" required>
                 <br/>        
                 <input type="text" id="eventAddress" name="event_location" placeholder="Event Address" required>
@@ -33,6 +31,9 @@
                 <br/>
                 <label for="endTime">End:</label>
                 <input type="datetime-local" id="endTime" name="end_time" class="endTime" required>
+                <br/>
+                <label for="event_cost">Event Cost:</label>
+
                 <br/>
                 <label for="myFile" class="fileButton">Choose File</label>
                 <input type="file" id="myFile" class="myFile" name="event_img">
