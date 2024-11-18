@@ -1,79 +1,55 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>InTown - Create Event</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-    <nav class="navBarContainer">
-        <div class="navBarItems" id="navBarItems">
-            <div class="loginButtonContainer">
-                <a href="login.html"> 
-                    <button class="login">Login</button>
-                </a>
-            </div>   
-            <div class="signUpContainer">
-                <a href="signUp.html">
-                    <button class="signUp">Sign Up</button>
-                </a>
-            </div>                
-            <div class="inTownLogoContainer">
-                <a href="Home.html"> 
-                    <button class="InTownLogo">InTown</button>
-                </a>
+    <head>
+        <title>InTown</title>
+        
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="images/cityscape.png"> 
+    </head>
+    <body>
+        <nav class="navBarContainer">
+            <div class="navTitle">
+                <a href="Home.html"><img src="images/inTown-Logo_Cropped.png" alt="inTown-Logo_Cropped" class="logo"></a>
             </div>
-            <div class="reviewsPageContainer">
-                <a href="Reviews.html">
-                    <button class="reviewsPage">Reviews</button>
-                </a>
+            <ul class="navList">
+                <li class="navItem"><a href="UserProfile.html">Profile</a></li>
+                <li class="navItem"><a href="Event.html">Events</a></li>
+                <li class="navItem"><a href="Reviews.html">Reviews</a></li>
+                <li class="navItem"><a href="signUp.html">Sign up</a></li>
+                <li class="navItem"><a href="login.html">Login</a></li>
+            </ul>  
+        </nav>
+     
+    <div name="formContainer" class="formContainer">    
+        <form name="uploadEvent" method="post" action="/event/uploadEvent" onsubmit="return validateForm()">
+            <div name="uploadEventContainer">
+                <h1>Upload an Event</h1>    
+                <input type="text" id="eventName" name="event_name" placeholder="Event Name" required>
+                <br/>        
+                <input type="text" id="eventAddress" name="event_location" placeholder="Event Address" required>
+                <br/>
+                <textarea id="eventDescription" name="event_description" placeholder="Enter your event description here."></textarea>
+                <br/>
+                <label for="startTime">Start:</label>
+                <input type="datetime-local" id="startTime" name="start_time" class="startTime" required>
+                <br/>
+                <label for="endTime">End:</label>
+                <input type="datetime-local" id="endTime" name="end_time" class="endTime" required>
+                <br/>
+                <label for="myFile" class="fileButton">Choose File</label>
+                <input type="file" id="myFile" class="myFile" name="event_img">
+                <br/>
+                <input type="submit" class="submitButton" onclick="submitForm()" value="Upload">
             </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1>Create and Upload Event</h1>
-        <div class="form-wrapper">
-            <form id="event-form" name="uploadEvent" onsubmit="return validateForm()">
-                <!-- Merged Fields -->
-                <input type="text" id="eventName" name="eventName" placeholder="Event Name" required><br>
-                <input type="text" id="eventLocation" name="eventAddress" placeholder="Event Location" required><br>
-                <textarea id="eventDescription" name="eventDescription" placeholder="Event Description" required></textarea><br>
-                <label for="eventDate">Event Start:</label>
-                <input type="date" id="eventDate" name="eventDate" required><br>
-                <label for="eventDate">Event End:</label>
-                <input type="date" id="eventDate" name="eventDate" required><br>
-
-                <!-- Start and End Times from Upload Form -->
-                <label for="startTime">Start Time:</label>
-                <input type="datetime-local" id="startTime" name="startTime" required><br>
-                <label for="endTime">End Time:</label>
-                <input type="datetime-local" id="endTime" name="endTime" required><br>
-                
-                <!-- File Upload from Upload Form -->
-                <label for="myFile" class="fileButton"> Upload photo/image </label>
-                <input type="file" id="myFile" name="myFile"><br>
-
-                <!-- Submit Button -->
-                <input type="submit" class="submitButton" value="Create Event">
-            </form>
-        </div> 
+        </form>
         <p id="fileName"></p>
-
-        <!-- Add a section to display fetched events -->
-        <h2>Upcoming Events</h2>
-        <div id="events-container"></div>
     </div>
 
-    <!-- Script to show selected file name -->
-    <script>
-        document.getElementById('myFile').addEventListener('change', function () {
-            var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
-            document.getElementById('fileName').textContent = 'Selected file: ' + fileName;
-        });
-    </script>
+            <script src="app.js">
+                document.getElementById('myFile').addEventListener('change', function () {
+                    var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+                    document.getElementById('fileName').textContent = 'Selected file: ' + fileName;
+                });
+            </script>
 
-    <!-- Link to external JavaScript file for fetching events -->
-    <script src="script.js"></script>
-</body>
+    </body>
 </html>
