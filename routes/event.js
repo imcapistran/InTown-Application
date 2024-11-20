@@ -25,6 +25,26 @@ router.get('/', async (req,res) => {
 }
   });
 
+// get events posted by logged in user
+router.get('/myevents', async (req,res) => {
+  const user_name = await req.user;
+  try {
+    const [results] = await db.promise().query(`SELECT * FROM Event WHERE BINARY user_name = '${user_name[0].user_name}'`);
+    const events = results.map(event => {
+      if (event.event_img) {
+          event.event_img = Buffer.from(event.event_img).toString('base64');
+      } else {
+          event.event_img = null;
+      }
+      return event;
+  });
+    res.status(200).json(events);
+} catch (err) {
+    console.log(err);
+    res.status(500).send('Error fetching events');
+}
+  });
+
 //upload event
 router.post('/uploadEvent', upload.single('event_img'), async (req,res) => {
   const user_name = await req.user;
@@ -54,6 +74,29 @@ router.post('/uploadEvent', upload.single('event_img'), async (req,res) => {
         ]
     );
     res.status(201).redirect('/public/Event.html');
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+router.post('/delete', async (req,res) => {
+  let {event_id} = req.body;
+  const user_name = await req.user;
+  const results = await db.promise().query('SELECT user_name FROM Event WHERE BINARY event_id = ?',
+    event_id
+  );
+  console.log(event_id);
+  console.log('results =');
+  console.log(results[0][0].user_name);
+  console.log(user_name[0].user_name);
+  if (user_name[0].user_name === results[0][0].user_name){
+    try {
+      await db.promise().query('DELETE FROM Event WHERE BINARY event_id = ?',
+        event_id
+      );
+    res.status(201).redirect('/public/UserProfile.html');
     }
     catch (err) {
       console.log(err);

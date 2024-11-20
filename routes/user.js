@@ -16,7 +16,17 @@ router.post('/createuser', async (req,res) => {
       console.log(err);
       redirect('/login/signUp.html');
     }
+});
 
+// logout
+router.get('/logout', (req, res, next) => {
+  req.logout((err) => {
+      if (err) {
+          console.error('Error logging out:', err);
+          return next(err); // Pass error to Express error handler
+      }
+      res.redirect('/login/login.html');
+  });
 });
   
   module.exports = router;

@@ -13,7 +13,7 @@ function validateForm() {
   const eventRoute = require('./routes/event');
   const path = require('path');
   const db = require('./database');
-  //middleware
+  //middleware require
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
@@ -34,15 +34,7 @@ initializePassport(
   }
 );
 
-
-const users = [
-  {
-    user_name: "bob",
-    email: "bob@wow",
-    password: "pass"
-  }
-];
-
+// middleware
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -62,23 +54,21 @@ app.use('/user', userRoute);
 app.use('/event', checkAuthenticated, eventRoute);
 
 app.use('/public', checkAuthenticated, express.static(path.join(__dirname, 'public')));
-app.use('/login', express.static(path.join(__dirname, 'login')));
+app.use('/login', checkNotAuthenticated, express.static(path.join(__dirname, 'login')));
 
+// redirects for when just the domain is entered
 app.get('/',checkAuthenticated, (req, res) => {
   res.redirect('/public/Event.html');
 });
 
-app.get('/login', (req, res) => {
-  console.log('loading login page');
-  res.redirect('/login/login.html');
-});
-
+// login
 app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
   successRedirect: '/public/Event.html',
   failureRedirect: '/login/login.html',
   failureFlash: true
 }));
 
+// authentacation functions
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -89,7 +79,7 @@ function checkAuthenticated(req, res, next) {
 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect('/login/login.html');
+    return res.redirect('/public/Event.html');
   }
   next();
 }
