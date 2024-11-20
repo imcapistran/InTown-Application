@@ -166,7 +166,6 @@ h2 {
 .star-rating input[type="radio"]:hover ~ label ~ label {
     color: gold; 
 }
-/* end of stars for reviews.html */
 
 .bento_wrapper {
     min-height: 100vh;
@@ -270,47 +269,5 @@ h2 {
 
 .bentoContainer .card:nth-child(9) .back {
     background-color: #2E8B57; /* SeaGreen */
-}
-
-
-/* Styling for slider */
-input[type="range"] {
-    width: 100%;
-    margin: 10px 0;
-}
-
-#costLabel {
-    font-weight: bold;
-    color: green;
-}
-
-/* Center alignment for time fields */
-.time-field {
-    display: flex;
-    flex-direction: column; /* Ensure label and input stack */
-    align-items: center;    /* Center-align elements */
-    margin-bottom: 20px;    /* Add spacing between fields */
-}
-
-.time-field label {
-    text-align: center;     /* Center-align label text */
-    margin-bottom: 5px;     /* Add spacing below label */
-}
-
-.time-field input {
-    text-align: center;     /* Center the input's text */
-    width: 80%;             /* Make input adapt to container size */
-    max-width: 300px;       /* Limit input's maximum width */
-}
-
-/* Responsive layout for smaller screens */
-@media (max-width: 600px) {
-    .time-field {
-        align-items: center; /* Keep alignment consistent */
-    }
-
-    .time-field input {
-        width: 90%;         /* Adjust input width for small screens */
-    }
 }
 

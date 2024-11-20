@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <nav class="navBarContainer">
+            <div class="navTitle">
+                <a href="Home.html"><img src="images/inTown-Logo_Cropped.png" alt="inTown-Logo_Cropped" class="logo"></a>
+            </div>
+            <ul class="navList">
+                <li class="navItem"><a href="Event.html">Events</a></li>
+                <li class="navItem"><a href="UserProfile.html">User page</a></li>
+                <li class="navItem"><a href="/user/logout">Logout</a></li>
+            </ul>  
+        </nav>
+
+    <div class="profile-container">
+        <!-- User Information -->
+        <section class="user-info">
+    <img src="/public/images/profile-default.png" alt="User Photo" class="profile-photo">
+    <div>
+        <h2>John Doe</h2>
+        <p>Email: johndoe@example.com</p>
+    </div>
+</section>
+
+
+        <!-- User’s Past Events -->
+        <section class="user-events">
+            <h2>Your Posted Events</h2>
+            <div class="bento_wrapper">
+                <div class="bentoContainer" id="eventsContainer">
+                <!-- Events from database are displayed here-->
+                </div>
+            </div>
+        </section>
+
+        <!-- User Reviews -->
+        <section class="user-reviews">
+    <h2>Your Reviews</h2>
+    <ul>
+        <li>
+            <h3>Event: Charity Run</h3>
+            <p>Rating: &#9733;&#9733;&#9733;&#9733;&#9734; (4/5)</p>
+            <p>“Amazing experience! Looking forward to next year’s event.”</p>
+        </li>
+        <li>
+            <h3>Event: Food Festival</h3>
+            <p>Rating: &#9733;&#9733;&#9733;&#9733;&#9733; (5/5)</p>
+            <p>“Loved the variety of food and ambiance!”</p>
+        </li>
+    </ul>
+</section>
+
+
+        <!-- Saved/Favorite Events -->
+        <section class="user-favorites">
+            <h2>Saved Events</h2>
+            <ul>
+            <div class="card">
+                <div class="card-face front">
+                    <img src="images/trivia.jpeg" alt="Karaoke Night">
+                </div>
+                <div class="card-face back">
+                    <h4>Main St Trivia Night</h4>
+                    <p>Come out to Trivia Night! Drinks, Teams or Singles, all welcome! There's a $25 prize for 1st!</p>
+                </div> 
+            </div>
+            <div class="card">
+                <div class="card-face front">
+                    <img src="images/big_shoals.jpeg" alt="Big Shoals Event">
+                </div>
+                <div class="card-face back">
+                    <h4>Big Shoals Junction</h4>
+                    <p>Come by to the Flea Market.</p>
+                </div> 
+            </div>
+            </ul>
+        </section>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("eventsContainer");
+    
+            // Fetch event data from the server
+            fetch("http://localhost:3000/event/myevents")
+                .then(response => response.json())
+                .then(events => {
+                    // Clear the container
+                    container.innerHTML = "";
+    
+                    // Loop through events and create cards
+                    events.forEach(event => {
+                        const imageUrl = `data:image/jpeg;base64,${event.event_img}`;
+                        const card = `
+                            <div class="card">
+                                <div class="card-face front">
+                                    <img src="${imageUrl}" alt="${event.event_name}">
+                                </div>
+                                <div class="card-face back">
+                                    <h4>${event.event_name}</h4>
+                                    <p><b>Description:</b> ${event.event_description}</p>
+                                    <p><b>Address:</b> ${event.event_location}</p>
+                                    <p><b>Start time:</b> ${event.start_time}</p>
+                                    <p><b>End Time:</b> ${event.end_time}</p>
+                                    <p><b>Cost:</b> ${event.event_cost}$</p>
+                                    <form onsubmit="return confirm('Are you sure you want to delete this event?');" action="/event/delete" method="POST">
+                                        <input type="hidden" name="event_id" value="${event.event_id}">
+                                        <button type="submit">Delete Event</button>
+                                    </form>
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML += card;
+                    });
+                })
+                .catch(error => console.error("Error fetching events:", error));
+        });
+    </script>
+</body>
+</html>
