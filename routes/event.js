@@ -81,6 +81,7 @@ router.post('/uploadEvent', upload.single('event_img'), async (req,res) => {
   }
 });
 
+// delete event
 router.post('/delete', async (req,res) => {
   let {event_id} = req.body;
   const user_name = await req.user;
