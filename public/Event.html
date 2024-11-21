@@ -11,19 +11,20 @@
             <div class="navTitle">
                 <a href="Home.html"><img src="images/inTown-Logo_Cropped.png" alt="inTown-Logo_Cropped" class="logo"></a>
             </div>
+
             <ul class="navList">
                 <li class="navItem"><a href="Event.html">Events</a></li>
                 <li class="navItem"><a href="UserProfile.html">User page</a></li>
                 <li class="navItem"><a href="/user/logout">Logout</a></li>
             </ul>  
-        </nav>
+        </nav> 
         
-        <h2>FEATURED EVENTS</h2>
-<div class="bento_wrapper">
-    <div class="bentoContainer" id="eventsContainer">
-    <!-- Events from database are displayed here-->
-    </div>
-</div>
+        <h2>ALL EVENTS</h2>
+        <div class="bento_wrapper">
+            <div class="bentoContainer" id="allEventsContainer">
+                <!-- All Events from database are displayed here-->
+            </div>
+        </div>
 
 <h2>UPCOMING EVENTS</h2>
 <div class="bento_wrapper">
@@ -111,41 +112,43 @@
         </div>
     </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const container = document.getElementById("eventsContainer");
+        <script>
+            // get all events
+            document.addEventListener("DOMContentLoaded", function () {
+                const container = document.getElementById("allEventsContainer");
 
-        // Fetch event data from the server
-        fetch("http://localhost:3000/event")
-            .then(response => response.json())
-            .then(events => {
-                // Clear the container
-                container.innerHTML = "";
+                // Fetch event data from the server
+                fetch("http://localhost:3000/event")
+                    .then(response => response.json())
+                    .then(events => {
+                        // Clear the container
+                        container.innerHTML = "";
 
-                // Loop through events and create cards
-                events.forEach(event => {
-                    const imageUrl = `data:image/jpeg;base64,${event.event_img}`;
-                    const card = `
-                        <div class="card">
-                            <div class="card-face front">
-                                <img src="${imageUrl}" alt="${event.event_name}">
-                            </div>
-                            <div class="card-face back">
-                                <h4>${event.event_name}</h4>
-                                <p><b>Description:</b> ${event.event_description}</p>
-                                <p><b>Address:</b> ${event.event_location}</p>
-                                <p><b>Start time:</b> ${event.start_time}</p>
-                                <p><b>End Time:</b> ${event.end_time}</p>
-                                <p><b>Cost:</b> ${event.event_cost}$</p>
-                                <p><b>Posted by:</b> ${event.user_name}</p>
-                            </div>
-                        </div>
-                    `;
-                    container.innerHTML += card;
-                });
-            })
-            .catch(error => console.error("Error fetching events:", error));
-    });
-</script>
+                        // Loop through events and create cards
+                        events.forEach(event => {
+                            const labels = ["Free", "$", "$$", "$$$", "$$$$"];
+                            const imageUrl = `data:image/jpeg;base64,${event.event_img}`;
+                            const card = `
+                                <div class="card">
+                                    <div class="card-face front">
+                                        <img src="${imageUrl}" alt="${event.event_name}">
+                                    </div>
+                                    <div class="card-face back">
+                                        <h4>${event.event_name}</h4>
+                                        <p><b>Description:</b> ${event.event_description}</p>
+                                        <p><b>Address:</b> ${event.event_location}</p>
+                                        <p><b>Start time:</b> ${event.start_time}</p>
+                                        <p><b>End Time:</b> ${event.end_time}</p>
+                                        <p><b>Cost:</b> ${labels[event.event_cost]}</p>
+                                        <p><b>Posted by:</b> ${event.user_name}</p>
+                                    </div>
+                                </div>
+                            `;
+                            container.innerHTML += card;
+                        });
+                    })
+                .catch(error => console.error("Error fetching events:", error));
+            });
+        </script>   
     </body>
 </html>
