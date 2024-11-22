@@ -12,17 +12,24 @@
                 <a href="Home.html"><img src="images/inTown-Logo_Cropped.png" alt="inTown-Logo_Cropped" class="logo"></a>
             </div>
 
+            <div>
+                <form id="searchForm">
+                    <input id="search" type="search" placeholder="Search by location" name="input_location">
+                    <button type="submit" class="submitButton">Search</button>
+                </form>
+            </div>
+
             <ul class="navList">
                 <li class="navItem"><a href="Event.html">Events</a></li>
                 <li class="navItem"><a href="UserProfile.html">User page</a></li>
                 <li class="navItem"><a href="/user/logout">Logout</a></li>
             </ul>  
         </nav> 
-        
-        <h2>ALL EVENTS</h2>
+
+        <h2>EVENTS</h2>
         <div class="bento_wrapper">
-            <div class="bentoContainer" id="allEventsContainer">
-                <!-- All Events from database are displayed here-->
+            <div class="bentoContainer" id="locationEventsContainer">
+                <!-- Events by location from database are displayed here-->
             </div>
         </div>
 
@@ -112,43 +119,66 @@
         </div>
     </div>
 </div>
+        
+        <!-- events by location-->  
         <script>
-            // get all events
-            document.addEventListener("DOMContentLoaded", function () {
-                const container = document.getElementById("allEventsContainer");
+            // upon loading page submits empty search form in order to load all events
+            document.addEventListener("DOMContentLoaded", async function () {
+            const searchForm = document.getElementById("searchForm");
+            const searchInput = document.getElementById("search");
+            const container = document.getElementById("locationEventsContainer");
+            // Add the submit event listener for the form
+            searchForm.addEventListener("submit", searchbylocation);
 
-                // Fetch event data from the server
-                fetch("http://localhost:3000/event")
-                    .then(response => response.json())
-                    .then(events => {
-                        // Clear the container
-                        container.innerHTML = "";
-
-                        // Loop through events and create cards
-                        events.forEach(event => {
-                            const labels = ["Free", "$", "$$", "$$$", "$$$$"];
-                            const imageUrl = `data:image/jpeg;base64,${event.event_img}`;
-                            const card = `
-                                <div class="card">
-                                    <div class="card-face front">
-                                        <img src="${imageUrl}" alt="${event.event_name}">
-                                    </div>
-                                    <div class="card-face back">
-                                        <h4>${event.event_name}</h4>
-                                        <p><b>Description:</b> ${event.event_description}</p>
-                                        <p><b>Address:</b> ${event.event_location}</p>
-                                        <p><b>Start time:</b> ${event.start_time}</p>
-                                        <p><b>End Time:</b> ${event.end_time}</p>
-                                        <p><b>Cost:</b> ${labels[event.event_cost]}</p>
-                                        <p><b>Posted by:</b> ${event.user_name}</p>
-                                    </div>
-                                </div>
-                            `;
-                            container.innerHTML += card;
-                        });
-                    })
-                .catch(error => console.error("Error fetching events:", error));
+            // Trigger an empty search on page load
+                searchInput.value = ""; // Ensure the search input is empty
+                await searchbylocation(new Event("submit"));
             });
-        </script>   
+            
+            // get events by location
+            document.getElementById("searchForm").addEventListener("submit", searchbylocation);
+            async function searchbylocation(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const inputLocation = document.getElementById("search").value;
+                const container = document.getElementById("locationEventsContainer");
+
+                try {
+                    // Fetch event data from the server
+                    const response = await fetch(`http://localhost:3000/event/bylocation?input_location=${encodeURIComponent(inputLocation)}`);
+                    const events = await response.json();
+                    console.log(events);
+
+                    // Clear the container
+                    container.innerHTML = "";
+
+                    // Loop through events and create cards
+                    events.forEach(event => {
+                        const labels = ["Free", "$", "$$", "$$$", "$$$$"];
+                        const imageUrl = `data:image/jpeg;base64,${event.event_img}`;
+                        const card = `
+                            <div class="card">
+                                <div class="card-face front">
+                                    <img src="${imageUrl}" alt="${event.event_name}">
+                                </div>
+                                <div class="card-face back">
+                                    <h4>${event.event_name}</h4>
+                                    <p><b>Description:</b> ${event.event_description}</p>
+                                    <p><b>Address:</b> ${event.event_location}</p>
+                                    <p><b>Start time:</b> ${event.start_time}</p>
+                                    <p><b>End Time:</b> ${event.end_time}</p>
+                                    <p><b>Cost:</b> ${labels[event.event_cost]}</p>
+                                    <p><b>Posted by:</b> ${event.user_name}</p>
+                                </div>
+                            </div>
+                        `;
+                        container.innerHTML += card;
+                    });
+             } catch (error) {
+                    console.error("Error fetching events:", error);
+                    container.innerHTML = "<p>Error loading events. Please try again later.</p>";
+                }
+            }
+        </script>
     </body>
 </html>

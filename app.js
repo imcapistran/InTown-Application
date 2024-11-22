@@ -55,10 +55,25 @@ app.use('/event', checkAuthenticated, eventRoute);
 
 app.use('/public', checkAuthenticated, express.static(path.join(__dirname, 'public')));
 app.use('/login', checkNotAuthenticated, express.static(path.join(__dirname, 'login')));
+app.use('/user', checkAuthenticated, express.static(path.join(__dirname, 'user')));
+
 
 // redirects for when just the domain is entered
 app.get('/',checkAuthenticated, (req, res) => {
   res.redirect('/public/Event.html');
+});
+
+app.post('/createuser', checkNotAuthenticated, async (req,res) => {
+  const {user_name, email_add, password, user_location} = req.body;
+    try {
+      const hashedpassword = await bcrypt.hash(req.body.password, 10);
+    db.promise().query(`INSERT INTO User VALUES('${user_name}', '${email_add}','${hashedpassword}', '${user_location}')`);
+    res.status(201).redirect('/login/login.html');
+    }
+    catch (err) {
+      console.log(err);
+      redirect('/login/signUp.html');
+    }
 });
 
 // login

@@ -6,24 +6,31 @@ const router = Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-// get all events
-router.get('/', async (req,res) => {
+// get events by location
+router.get('/bylocation', async (req, res) => {
+  const inputLocation = req.query.input_location;
+
   try {
-    const [results] = await db.promise().query(`SELECT * FROM Event`);
-    const events = results.map(event => {
-      if (event.event_img) {
-          event.event_img = Buffer.from(event.event_img).toString('base64');
-      } else {
-          event.event_img = null;
-      }
-      return event;
-  });
-    res.status(200).json(events);
-} catch (err) {
-    console.log(err);
-    res.status(500).send('Error fetching events');
-}
-  });
+      const [results] = await db.promise().query(
+          `SELECT * FROM Event WHERE event_location LIKE ?`,
+          [`%${inputLocation}%`]
+      );
+
+      const events = results.map(event => {
+          if (event.event_img) {
+              event.event_img = Buffer.from(event.event_img).toString('base64');
+          } else {
+              event.event_img = null;
+          }
+          return event;
+      });
+
+      res.status(200).json(events);
+  } catch (err) {
+      console.error("Error fetching events:", err);
+      res.status(500).send("Error fetching events");
+  }
+});
 
 // get events posted by logged in user
 router.get('/myevents', async (req,res) => {

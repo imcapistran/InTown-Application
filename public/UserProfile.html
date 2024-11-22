@@ -21,9 +21,8 @@
         <!-- User Information -->
         <section class="user-info">
     <img src="/public/images/profile-default.png" alt="User Photo" class="profile-photo">
-    <div>
-        <h2>John Doe</h2>
-        <p>Email: johndoe@example.com</p>
+    <div id = "userinfo">
+    <!--user info goes here-->
     </div>
 </section>
 
@@ -82,6 +81,26 @@
         </section>
     </div>
     <script>
+        // diplays user info
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("userinfo");
+    
+            // Fetch event data from the server
+            fetch("http://localhost:3000/user/info")
+                .then(response => response.json())
+                .then(user => {
+                    // Clear the container
+                        const card = `
+                                <h2>${user.user_name}</h2>
+                                <p>Email: ${user.email_add}</p>
+                        `;
+                        container.innerHTML += card;
+                    });
+                })
+                .catch(error => console.error("Error fetching events:", error));
+    </script>
+    <script>
+        // displays users posted events
         document.addEventListener("DOMContentLoaded", function () {
             const container = document.getElementById("eventsContainer");
     
