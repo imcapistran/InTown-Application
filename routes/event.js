@@ -83,6 +83,7 @@ router.post('/uploadEvent', upload.single('event_img'), async (req,res) => {
     res.status(201).redirect('/public/Event.html');
     }
     catch (err) {
+      res.status(500).json({ error: err.message });
       console.log(err);
     }
   }

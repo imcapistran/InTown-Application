@@ -32,93 +32,6 @@
                 <!-- Events by location from database are displayed here-->
             </div>
         </div>
-
-<h2>UPCOMING EVENTS</h2>
-<div class="bento_wrapper">
-    <div class="bentoContainer">
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/art_party.jpeg" alt="Art Party Event">
-            </div>
-            <div class="card-face back">
-                <h4>Art Party</h4>
-                <p>Join us for a fun and creative night at the Art Party! Enjoy hands-on painting, live music, and a great time with friends and fellow artists.</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/soiree.jpeg" alt="Art Tour Event">
-            </div>
-            <div class="card-face back">
-                <h4>Surrogacy Soiree</h4>
-                <p>Tickets are now on sale to join us at the Surrogacy Soiree. Hosted by The Surrogacy Foundation.</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/rich_people.jpeg" alt="Holiday Bazaar Event">
-            </div>
-            <div class="card-face back">
-                <h4>PMJ Jewels - USA Tour 2024</h4>
-                <p>Now in Atlanta, Georgia ready to server for all your Occasions and Celebrations.</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/ribbon_cutting.jpeg" alt="Bike Night Event">
-            </div>
-            <div class="card-face back">
-                <h4>Mountain Lakes Physician Groups Grand Opening!</h4>
-                <p>You're invited to our Ribbon Cutting! Please join us to celebrate our new favility from the Rural Health Clinic!</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/pitching.jpeg" alt="Canada Celebration Event">
-            </div>
-            <div class="card-face back">
-                <h4>Baseball Pitching Lessons</h4>
-                <p>Available to offer pitching lessons over Thanksgiving break and Christmas break. Thank you!</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/canathon.jpeg" alt="Canathon Event">
-            </div>
-            <div class="card-face back">
-                <h4>Canathon</h4>
-                <p>Join us in giving back to the community at our Canathon! Donate non-perishable items to help fight hunger and support those in need during the holiday season.</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/clayton_christmas.jpeg" alt="Clayton Christmas Event">
-            </div>
-            <div class="card-face back">
-                <h4>Clayton Christmas</h4>
-                <p>Celebrate Christmas in style at the Clayton Christmas Festival! Enjoy holiday lights, festive performances, and a visit from Santa Claus himself.</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/party4.jpeg" alt="Creative Playtime Event">
-            </div>
-            <div class="card-face back">
-                <h4>Jungle Bells: Closing Ceremony</h4>
-                <p>FINAL NIGHT OF JUNGLE BELLS.</p>
-            </div> 
-        </div>
-        <div class="card">
-            <div class="card-face front">
-                <img src="images/party3.jpeg" alt="Farmers Market Event">
-            </div>
-            <div class="card-face back">
-                <h4>Jungle Bells: Official Late Night</h4>
-                <p>GEORGIE RIOT, DOCUMENT ONE, DEGS, ODI, KEITH MACKENZIE, S-DOOBIE, MIXMASTER DOC, KADILAK W/ MCFREAK, ROWDY RANCHER, KAE</p>
-            </div> 
-        </div>
-    </div>
-</div>
         
         <!-- events by location-->  
         <script>
@@ -134,6 +47,19 @@
                 searchInput.value = ""; // Ensure the search input is empty
                 await searchbylocation(new Event("submit"));
             });
+
+            // converts datetime to read easy
+            function formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+                const day = String(date.getDate()).padStart(2, '0');
+                const year = date.getFullYear();
+                let hours = date.getHours();
+                const period = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12;
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                return `${month}/${day}/${year} ${hours}:${minutes}${period}`;
+            }
             
             // get events by location
             document.getElementById("searchForm").addEventListener("submit", searchbylocation);
@@ -154,6 +80,8 @@
 
                     // Loop through events and create cards
                     events.forEach(event => {
+                        const formattedStartTime = formatTime(event.start_time);
+                        const formattedEndTime = formatTime(event.end_time);
                         const labels = ["Free", "$", "$$", "$$$", "$$$$"];
                         const imageUrl = `data:image/jpeg;base64,${event.event_img}`;
                         const card = `
@@ -165,8 +93,8 @@
                                     <h4>${event.event_name}</h4>
                                     <p><b>Description:</b> ${event.event_description}</p>
                                     <p><b>Address:</b> ${event.event_location}</p>
-                                    <p><b>Start time:</b> ${event.start_time}</p>
-                                    <p><b>End Time:</b> ${event.end_time}</p>
+                                    <p><b>Start time:</b> ${formattedStartTime}</p>
+                                    <p><b>End Time:</b> ${formattedEndTime}</p>
                                     <p><b>Cost:</b> ${labels[event.event_cost]}</p>
                                     <p><b>Posted by:</b> ${event.user_name}</p>
                                 </div>
